@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class Panel extends javax.swing.JFrame {
     Connection  myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "240394Adam,");
-
+    Statement myStmt=myConn.createStatement();
     public Panel() throws SQLException {
         
         initComponents();
@@ -24,7 +24,7 @@ public class Panel extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        text_hamburger = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -58,7 +58,7 @@ public class Panel extends javax.swing.JFrame {
         TaxCost = new javax.swing.JLabel();
         TotalCost = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        receipt = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         countCost = new javax.swing.JButton();
@@ -74,10 +74,10 @@ public class Panel extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Hamburger");
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel2.setPreferredSize(new java.awt.Dimension(150, 35));
+        text_hamburger.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        text_hamburger.setText("Hamburger");
+        text_hamburger.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        text_hamburger.setPreferredSize(new java.awt.Dimension(150, 35));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Cheeseburger");
@@ -118,7 +118,7 @@ public class Panel extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_hamburger, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -136,7 +136,7 @@ public class Panel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(hamburgerAmount)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(text_hamburger, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cheeseburgerAmount)
@@ -386,11 +386,11 @@ public class Panel extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("RACHUNEK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        receipt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        receipt.setText("RACHUNEK");
+        receipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                receiptActionPerformed(evt);
             }
         });
 
@@ -435,7 +435,7 @@ public class Panel extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(countCost, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(receipt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -449,7 +449,7 @@ public class Panel extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(receipt, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(countCost, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -553,11 +553,10 @@ public class Panel extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void receiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_receiptActionPerformed
         Receipt.setText("");
         
-        
-        
+                
         FoodCost cost = new FoodCost();
               
         
@@ -580,8 +579,32 @@ public class Panel extends javax.swing.JFrame {
         + "\nCappy:\t\t"+cappy+"\t"+cappy*cost.getCappyCost()+" zł"
         + "\nWoda:\t\t" + water+"\t"+water*cost.getWaterCost()+" zł"
         + "\n\nDO ZAPŁACENIA: " + TotalCost.getText() + " zł");
+        
+        try {
+            String q1="insert into restaurant.orders (product_name, product_amount,product_cost) values('Hamburger','"+hamburgerAmount.getText()+"','"+hamburger*cost.getHamburgerCost()+"');";
+            String q2="insert into restaurant.orders (product_name, product_amount,product_cost) values('Cheeseburger','"+cheeseburgerAmount.getText()+"','"+cheeseburger*cost.getCheeseburgerCost()+"');";
+            String q3="insert into restaurant.orders (product_name, product_amount,product_cost) values('Kurczakburger','"+kurBurgerAmount.getText()+"','"+kurBurger*cost.getKurczakburgerCost()+"');";
+            String q4="insert into restaurant.orders (product_name, product_amount,product_cost) values('Hot Dog','"+HotDogAmount.getText()+"','"+hotDog*cost.getHotDCost()+"');";
+            String q5="insert into restaurant.orders (product_name, product_amount,product_cost) values('Coca cola','"+ColaAmount.getText()+"','"+cola*cost.getColaCost()+"');";
+            String q6="insert into restaurant.orders (product_name, product_amount,product_cost) values('Fanta','"+FantaAmount.getText()+"','"+fanta*cost.getFantaCost()+"');";
+            String q7="insert into restaurant.orders (product_name, product_amount,product_cost) values('Cappy','"+CappyAmount.getText()+"','"+cappy*cost.getCappyCost()+"');";
+            String q8="insert into restaurant.orders (product_name, product_amount,product_cost) values('Water','"+WaterAmount.getText()+"','"+water*cost.getWaterCost()+"');";
+
+            
+            myStmt.executeUpdate(q1);
+            myStmt.executeUpdate(q2);
+            myStmt.executeUpdate(q3);
+            myStmt.executeUpdate(q4);
+            myStmt.executeUpdate(q5);
+            myStmt.executeUpdate(q6);
+            myStmt.executeUpdate(q7);
+            myStmt.executeUpdate(q8);
+        } catch (Exception e) {
+            System.out.println("Did not worked");
+        }
+        
           
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_receiptActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         boolean state = false;
@@ -737,23 +760,29 @@ public class Panel extends javax.swing.JFrame {
 
     private void RaportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaportActionPerformed
         Receipt.setText("");
-        Receipt.append("\tRAPORT:\n\n" 
-        );
-        String ham=hamburgerAmount.getText();
-        String cheese=cheeseburgerAmount.getText();
-        String kur=kurBurgerAmount.getText();
-        String hot=HotDogAmount.getText();
-        String col=ColaAmount.getText();
-        String fant=FantaAmount.getText();
-        String capp=CappyAmount.getText();
-        String wat=WaterAmount.getText();
         try {
-            String q="insert into restaurant.orders (id, name) values(2, 'sledzik');";
-            Statement myStmt=myConn.createStatement();
-            myStmt.executeUpdate(q);
+            String q1="SELECT product_amount FROM restaurant.orders where product_name='Hamburger';";
+            String q2="Select sum(if(product_name='Water', product_amount,0)) from restaurant.orders;";
+            ResultSet rs1=myStmt.executeQuery(q1);
+            //ResultSet rs2=myStmt.executeQuery(q2);
+            
+//            System.out.println(rs);
+            while (rs1.next())
+      {
+        
+        int hamburgersTotalAmount = rs1.getInt("product_amount");
+        
+        
+        // print the results
+        //System.out.format("%s\n", hamburgersTotalAmount);
+      }
+  //          Receipt.setText("w2");
         } catch (Exception e) {
-            System.out.println("Wyjebało");
+            System.out.println("Nie działa zrobienie raportu");
         }
+        //Receipt.append("\tRAPORT:\n\n" 
+        //);
+        
         
  
     }//GEN-LAST:event_RaportActionPerformed
@@ -816,7 +845,6 @@ public class Panel extends javax.swing.JFrame {
     private javax.swing.JLabel diffCurrencyValue;
     private javax.swing.JButton exit;
     private javax.swing.JTextField hamburgerAmount;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -825,7 +853,6 @@ public class Panel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -842,6 +869,8 @@ public class Panel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField kurBurgerAmount;
+    private javax.swing.JButton receipt;
     private javax.swing.JButton reset;
+    private javax.swing.JLabel text_hamburger;
     // End of variables declaration//GEN-END:variables
 }
