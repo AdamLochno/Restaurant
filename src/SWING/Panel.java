@@ -1,11 +1,20 @@
 
 package SWING;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Panel extends javax.swing.JFrame {
+    Connection  myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "240394Adam,");
 
-
-    public Panel() {
+    public Panel() throws SQLException {
+        
         initComponents();
     }
 
@@ -53,6 +62,7 @@ public class Panel extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         countCost = new javax.swing.JButton();
+        Raport = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Receipt = new javax.swing.JTextArea();
@@ -258,17 +268,14 @@ public class Panel extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CurrencyComboBox, 0, 178, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CurrencyComboBox, 0, 178, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(diffCurrencyValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -412,20 +419,30 @@ public class Panel extends javax.swing.JFrame {
             }
         });
 
+        Raport.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Raport.setText("RAPORT");
+        Raport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RaportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(countCost, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Raport, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,7 +452,8 @@ public class Panel extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(countCost, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Raport, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -536,9 +554,13 @@ public class Panel extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Receipt.setText("");
+        
+        
+        
         FoodCost cost = new FoodCost();
-//              
-//        
+              
+        
         double hamburger = Double.parseDouble(hamburgerAmount.getText());
         double cheeseburger = Double.parseDouble(cheeseburgerAmount.getText());
         double kurBurger = Double.parseDouble(kurBurgerAmount.getText());        
@@ -713,6 +735,29 @@ public class Panel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void RaportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaportActionPerformed
+        Receipt.setText("");
+        Receipt.append("\tRAPORT:\n\n" 
+        );
+        String ham=hamburgerAmount.getText();
+        String cheese=cheeseburgerAmount.getText();
+        String kur=kurBurgerAmount.getText();
+        String hot=HotDogAmount.getText();
+        String col=ColaAmount.getText();
+        String fant=FantaAmount.getText();
+        String capp=CappyAmount.getText();
+        String wat=WaterAmount.getText();
+        try {
+            String q="insert into restaurant.orders (id, name) values(2, 'sledzik');";
+            Statement myStmt=myConn.createStatement();
+            myStmt.executeUpdate(q);
+        } catch (Exception e) {
+            System.out.println("Wyjebało");
+        }
+        
+ 
+    }//GEN-LAST:event_RaportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -743,7 +788,11 @@ public class Panel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Panel().setVisible(true);
+                try {
+                    new Panel().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -756,6 +805,7 @@ public class Panel extends javax.swing.JFrame {
     private javax.swing.JLabel DeliveryCost;
     private javax.swing.JTextField FantaAmount;
     private javax.swing.JTextField HotDogAmount;
+    private javax.swing.JButton Raport;
     private javax.swing.JTextArea Receipt;
     private javax.swing.JCheckBox TaxChBox;
     private javax.swing.JLabel TaxCost;
