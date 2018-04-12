@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class Panel extends javax.swing.JFrame {
     Connection  myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "240394Adam,");
-    Statement myStmt=myConn.createStatement();
+    
     public Panel() throws SQLException {
         
         initComponents();
@@ -45,7 +45,7 @@ public class Panel extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         CurrencyComboBox = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        changeCurrency = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         diffCurrencyValue = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -247,11 +247,11 @@ public class Panel extends javax.swing.JFrame {
         CurrencyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Wybierz walutę", "EURO", "Dollar Amerykański", "Funt Brytyjski" }));
         CurrencyComboBox.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("PRZELICZ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        changeCurrency.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        changeCurrency.setText("PRZELICZ");
+        changeCurrency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                changeCurrencyActionPerformed(evt);
             }
         });
 
@@ -282,7 +282,7 @@ public class Panel extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(changeCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -295,7 +295,7 @@ public class Panel extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(CurrencyComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(changeCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -432,17 +432,17 @@ public class Panel extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(countCost, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(receipt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Raport, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +454,7 @@ public class Panel extends javax.swing.JFrame {
                     .addComponent(countCost, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Raport, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -469,7 +469,7 @@ public class Panel extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -521,8 +521,8 @@ public class Panel extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -540,10 +540,10 @@ public class Panel extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -581,6 +581,7 @@ public class Panel extends javax.swing.JFrame {
         + "\n\nDO ZAPŁACENIA: " + TotalCost.getText() + " zł");
         
         try {
+            Statement myStmt=myConn.createStatement();
             String q1="insert into restaurant.orders (product_name, product_amount,product_cost) values('Hamburger','"+hamburgerAmount.getText()+"','"+hamburger*cost.getHamburgerCost()+"');";
             String q2="insert into restaurant.orders (product_name, product_amount,product_cost) values('Cheeseburger','"+cheeseburgerAmount.getText()+"','"+cheeseburger*cost.getCheeseburgerCost()+"');";
             String q3="insert into restaurant.orders (product_name, product_amount,product_cost) values('Kurczakburger','"+kurBurgerAmount.getText()+"','"+kurBurger*cost.getKurczakburgerCost()+"');";
@@ -599,6 +600,7 @@ public class Panel extends javax.swing.JFrame {
             myStmt.executeUpdate(q6);
             myStmt.executeUpdate(q7);
             myStmt.executeUpdate(q8);
+            myConn.close();
         } catch (Exception e) {
             System.out.println("Did not worked");
         }
@@ -722,7 +724,7 @@ public class Panel extends javax.swing.JFrame {
        
     }//GEN-LAST:event_countCostActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void changeCurrencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCurrencyActionPerformed
        PullApiData pulldata=new PullApiData();
        String cost = TotalCost.getText();
        if(CurrencyComboBox.getSelectedItem().equals("EURO"))
@@ -756,35 +758,26 @@ public class Panel extends javax.swing.JFrame {
            String total2 = String.valueOf(roundOff);           
            diffCurrencyValue.setText(total2+ " " + "\u00a3");   
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_changeCurrencyActionPerformed
 
     private void RaportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaportActionPerformed
         Receipt.setText("");
+        FoodCost cost = new FoodCost();
         try {
-            String q1="SELECT product_amount FROM restaurant.orders where product_name='Hamburger';";
-            String q2="Select sum(if(product_name='Water', product_amount,0)) from restaurant.orders;";
+            Statement myStmt=myConn.createStatement();
+            String q1="Select sum(product_amount) AS product_amount from restaurant.orders where product_name = 'Hamburger';";
             ResultSet rs1=myStmt.executeQuery(q1);
-            //ResultSet rs2=myStmt.executeQuery(q2);
             
-//            System.out.println(rs);
             while (rs1.next())
-      {
+      {        
+        int TotalAmount = rs1.getInt("product_amount");
         
-        int hamburgersTotalAmount = rs1.getInt("product_amount");
-        
-        
-        // print the results
-        //System.out.format("%s\n", hamburgersTotalAmount);
+        System.out.format("Hamburger: "+"%s\n", TotalAmount+" "+TotalAmount*cost.getHamburgerCost()+"zł");
       }
-  //          Receipt.setText("w2");
+
         } catch (Exception e) {
-            System.out.println("Nie działa zrobienie raportu");
+            System.err.println(e);
         }
-        //Receipt.append("\tRAPORT:\n\n" 
-        //);
-        
-        
- 
     }//GEN-LAST:event_RaportActionPerformed
 
     /**
@@ -840,12 +833,12 @@ public class Panel extends javax.swing.JFrame {
     private javax.swing.JLabel TaxCost;
     private javax.swing.JLabel TotalCost;
     private javax.swing.JTextField WaterAmount;
+    private javax.swing.JButton changeCurrency;
     private javax.swing.JTextField cheeseburgerAmount;
     private javax.swing.JButton countCost;
     private javax.swing.JLabel diffCurrencyValue;
     private javax.swing.JButton exit;
     private javax.swing.JTextField hamburgerAmount;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
